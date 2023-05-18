@@ -22,7 +22,6 @@ app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
 usePassport(app)
-app.use(routes)
 
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated()
@@ -31,6 +30,8 @@ app.use((req, res, next) => {
   // res.locals.warning_msg = req.flash('warning_msg')
   next()
 })
+
+app.use(routes)
 
 app.listen(PORT, () => {
   console.log(`app is running on http://localhost:${PORT}`)
