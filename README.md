@@ -1,4 +1,4 @@
-![myimage]()
+![myimage](https://github.com/Ray625/todo-sequelize/blob/main/Screen.PNG?raw=true)
 ## 簡介
 簡易Todo清單，使用者登入後，可以新增、瀏覽、編輯及刪除Todo資訊。
 ## 功能
