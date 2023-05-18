@@ -1,11 +1,13 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
-const bcrypt = require('bcryptjs')
 const session = require('express-session')
 const flash = require('connect-flash')
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 const app = express()
-const PORT = 3000
+const PORT = process.env.PORT || 3000
 
 const routes = require('./routes')
 const usePassport = require('./config/passport')
