@@ -6,7 +6,6 @@ const session = require('express-session')
 const app = express()
 const PORT = 3000
 
-const passport = require('passport')
 const routes = require('./routes')
 const usePassport = require('./config/passport')
 
@@ -25,10 +24,13 @@ app.use(methodOverride('_method'))
 usePassport(app)
 app.use(routes)
 
-app.post('/users/login', passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/users/login'
-}))
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.user = req.user
+  // res.locals.success_msg = req.flash('success_msg')
+  // res.locals.warning_msg = req.flash('warning_msg')
+  next()
+})
 
 app.listen(PORT, () => {
   console.log(`app is running on http://localhost:${PORT}`)
